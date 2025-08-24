@@ -24,6 +24,7 @@ public class ConsoleUI {
         this.appConfig = appConfig;
         this.input = new Scanner(System.in);
         this.quizLogger = new QuizLog(questions.size());
+        System.out.println(appConfig.toString());
     }
     public QuizLog startQuiz() {
         System.out.println("\nЗдравствуйте, приступаем к тесту \"" + appConfig.getTitle() + "\"!\n");
