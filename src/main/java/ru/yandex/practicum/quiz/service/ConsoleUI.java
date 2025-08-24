@@ -1,7 +1,7 @@
 package ru.yandex.practicum.quiz.service;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import ru.yandex.practicum.quiz.config.AppConfig;
 import ru.yandex.practicum.quiz.config.QuizConfig;
 import ru.yandex.practicum.quiz.model.Question;
 import ru.yandex.practicum.quiz.model.QuizLog;
@@ -14,19 +14,19 @@ public class ConsoleUI {
     private final Scanner input;
     private final QuizLog quizLogger;
     private final List<Question> questions;
-    private final String title;
+    private final AppConfig appConfig;
 
     public ConsoleUI(
-            @Value("${sprint-quiz.title:Неназванный тест}") String title,
+            AppConfig appConfig,
             QuizConfig quizConfig
     ) {
         this.questions = quizConfig.getQuestions();
-        this.title = title;
+        this.appConfig = appConfig;
         this.input = new Scanner(System.in);
         this.quizLogger = new QuizLog(questions.size());
     }
     public QuizLog startQuiz() {
-        System.out.println("\nЗдравствуйте, приступаем к тесту \"" + title + "\"!\n");
+        System.out.println("\nЗдравствуйте, приступаем к тесту \"" + appConfig.getTitle() + "\"!\n");
 
         for (int questionIdx = 0; questionIdx < questions.size(); questionIdx++) {
             Question question = questions.get(questionIdx);
