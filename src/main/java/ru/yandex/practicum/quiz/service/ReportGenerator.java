@@ -1,5 +1,6 @@
 package ru.yandex.practicum.quiz.service;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import ru.yandex.practicum.quiz.model.QuizLog;
 
@@ -8,6 +9,14 @@ import java.util.List;
 
 @Component
 public class ReportGenerator {
+    private final String title;
+
+    public ReportGenerator(
+            @Value("${sprint-quiz.title:Неназванный тест}") String title
+    ) {
+        this.title = title;
+    }
+
     public void generate(QuizLog quizLog) {
         // Создаём объект PrintWriter, выводящий отчет в консоль
         try (PrintWriter writer = new PrintWriter(System.out)) {
@@ -19,7 +28,7 @@ public class ReportGenerator {
     }
 
     private void write(QuizLog quizLog, PrintWriter writer) {
-        writer.println("Отчет о прохождении теста \"Тест по Spring Framework\".\n");
+        writer.println("Отчет о прохождении теста \"" + title + "\".\n");
         for (QuizLog.Entry entry : quizLog) {
             // Записываем номер вопроса и текст вопроса
             writer.println("Вопрос " + entry.getNumber() + ": " + entry.getQuestion().getText());
