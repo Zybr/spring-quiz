@@ -18,7 +18,7 @@ public class AppConfig {
     @RequiredArgsConstructor
     @Getter
     @ToString
-    private static class ReportSettings {
+    public static class ReportSettings {
         private final boolean enabled;
         private final ReportMode mode;
         private final ReportOutputSettings output;
@@ -27,14 +27,14 @@ public class AppConfig {
     @RequiredArgsConstructor
     @Getter
     @ToString
-    private static class ReportOutputSettings {
+    public static class ReportOutputSettings {
         private final ReportOutputMode mode;
         private final String path;
     }
 
     public enum ReportMode {
         VERBOSE,
-        CONSOLE;
+        CONCISE;
     }
 
     public enum ReportOutputMode {

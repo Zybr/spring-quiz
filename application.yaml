@@ -10,14 +10,16 @@ spring-quiz:
     # может иметь одно из двух значений:
     # verbose — формировать расширенный отчёт
     # concise — формировать сокращённый отчёт
-    mode: "verbose"
+#    mode: "verbose"
+    mode: "concise"
     # spring-quiz.report.output — настройки вывода отчёта
     output:
       # spring-quiz.report.output.mode — режим вывода отчёта;
       # может иметь одно из двух значений:
       # console — вывод отчёта в консоль
       # file — вывод отчёта в файл
-      mode: "console"
+#      mode: "console"
+      mode: "file"
       # spring-quiz.report.output.path — путь к файлу,
       # в который необходимо записать данные отчёта
-      path: "./quiz-result.txt"
+      path: "./resources/reports/quiz-result.txt"
