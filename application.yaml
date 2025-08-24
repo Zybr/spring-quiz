@@ -5,6 +5,12 @@ spring:
     import: "classpath:quiz/questions.yaml"
   profiles:
     active: dev
+logging:
+  level:
+    root: WARN
+    ru.yandex.practicum.quiz: TRACE # настраиваем уровень логера
+#    ru.yandex.practicum.quiz.QuizApp: TRACE # настраиваем уровень логера
+#    ru.yandex.practicum.quiz.service.ConsoleUI: TRACE # настраиваем уровень логера
 spring-quiz:
   title: "Тест по Spring Framework"
   # spring-quiz.report — настройки отчёта
@@ -22,7 +28,7 @@ spring-quiz:
       # может иметь одно из двух значений:
       # console — вывод отчёта в консоль
       # file — вывод отчёта в файл
-#      mode: "console"
+      #      mode: "console"
       mode: "file"
       # spring-quiz.report.output.path — путь к файлу,
       # в который необходимо записать данные отчёта

@@ -1,6 +1,7 @@
 package ru.yandex.practicum.quiz;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,13 +11,14 @@ import ru.yandex.practicum.quiz.model.QuizLog;
 import ru.yandex.practicum.quiz.service.ConsoleUI;
 import ru.yandex.practicum.quiz.service.ReportGenerator;
 
+@Slf4j
 @SpringBootApplication
 @RequiredArgsConstructor
 @ConfigurationPropertiesScan
 public class QuizApp implements CommandLineRunner {
     private final ConsoleUI ui;
     private final ReportGenerator reportGenerator;
-    private final AppConfig appConfig;
+    private final AppConfig config;
 
     public static void main(String[] args) {
         SpringApplication.run(QuizApp.class, args);
@@ -24,10 +26,8 @@ public class QuizApp implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
+        log.debug("Applications is running with the following configuration:\n{}", config);
         QuizLog log = ui.startQuiz();
-
-        if (appConfig.getReport().isEnabled()) {
-            reportGenerator.generate(log);
-        }
+        reportGenerator.generate(log);
     }
 }
