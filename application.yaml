@@ -1,5 +1,10 @@
 server:
   port: 8081
+spring:
+  config:
+    import: "classpath:quiz/questions.yaml"
+  profiles:
+    active: dev
 spring-quiz:
   title: "Тест по Spring Framework"
   # spring-quiz.report — настройки отчёта
@@ -10,8 +15,7 @@ spring-quiz:
     # может иметь одно из двух значений:
     # verbose — формировать расширенный отчёт
     # concise — формировать сокращённый отчёт
-#    mode: "verbose"
-    mode: "concise"
+    mode: "verbose"
     # spring-quiz.report.output — настройки вывода отчёта
     output:
       # spring-quiz.report.output.mode — режим вывода отчёта;
@@ -22,4 +26,4 @@ spring-quiz:
       mode: "file"
       # spring-quiz.report.output.path — путь к файлу,
       # в который необходимо записать данные отчёта
-      path: "./resources/reports/quiz-result.txt"
+      path: "./output/reports/quiz-result.txt"

@@ -39,4 +39,4 @@ build/
 .DS_Store
 
 # Temp files
-resources/reports
+output
